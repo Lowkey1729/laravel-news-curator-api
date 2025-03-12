@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ArticleException;
+use App\Requests\CreateArticleRequest;
+use App\Requests\FetchArticlesRequest;
+use App\Requests\UpdateArticleRequest;
 use App\Responses\V1\SuccessResponse;
 use App\Services\ArticleService;
+use Spatie\LaravelData\Exceptions\InvalidDataClass;
 
 class ArticleController extends Controller
 {
@@ -11,37 +16,49 @@ class ArticleController extends Controller
         protected ArticleService $articleService
     ) {}
 
-    public function index()
+    /**
+     * @throws InvalidDataClass
+     */
+    public function index(FetchArticlesRequest $request)
     {
-        $data = $this->articleService->fetchArticles();
+        $data = $this->articleService->fetchArticles($request->getData());
 
         return SuccessResponse::make(message: 'Articles fetched successfully', data: $data);
     }
 
-    public function show()
+    /**
+     * @throws ArticleException
+     */
+    public function show(int $id)
     {
-        $data = $this->articleService->fetchArticleById(1);
+        $data = $this->articleService->fetchArticleById($id);
 
         return SuccessResponse::make(message: 'Article fetched successfully', data: $data);
     }
 
-    public function store()
+    public function store(CreateArticleRequest $request)
     {
         $this->articleService->storeArticle();
 
         return SuccessResponse::make(message: 'Article stored successfully', statusCode: 201);
     }
 
-    public function update()
+    /**
+     * @throws ArticleException
+     */
+    public function update(int $id, UpdateArticleRequest $request)
     {
-        $this->articleService->updateArticle(2);
+        $this->articleService->updateArticle($id);
 
         return SuccessResponse::make(message: 'Article updated successfully');
     }
 
-    public function click()
+    /**
+     * @throws ArticleException
+     */
+    public function click(int $id)
     {
-        $this->articleService->recordArticleClick(1);
+        $this->articleService->recordArticleClick($id);
 
         return SuccessResponse::make(message: 'Click recorded successfully');
     }

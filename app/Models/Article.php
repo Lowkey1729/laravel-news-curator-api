@@ -10,6 +10,7 @@ class Article extends Model
         'title',
         'content',
         'url',
+        'slug',
         'views',
         'clicks',
     ];

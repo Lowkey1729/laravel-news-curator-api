@@ -2,14 +2,31 @@
 
 namespace App\Services;
 
+use App\DTOs\FetchArticlesRequestData;
 use App\Exceptions\ArticleException;
 use App\Models\Article;
+use Illuminate\Database\Eloquent\Builder;
 
 class ArticleService
 {
-    public function fetchArticles(): array
+    /**
+     * @return array<string, mixed>
+     */
+    public function fetchArticles(FetchArticlesRequestData $data): array
     {
-        return Article::query()->simplePaginate(15)->toArray();
+        return Article::query()
+            ->when($data->title, function (Builder $query) use ($data) {
+                $query->where('title', 'like', "$data->title%");
+            })
+            ->when($data->views, function (Builder $query) use ($data) {
+                $query->where('views', $data->views);
+            })
+            ->when($data->clicks, function (Builder $query) use ($data) {
+                $query->whereRelation('clicks', 'title', $data->clicks);
+            })
+            ->orderBy((string) $data->sort_by, $data->direction)
+            ->paginate($data->limit)
+            ->toArray();
     }
 
     /**

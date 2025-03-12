@@ -2,23 +2,50 @@
 
 namespace App\Services;
 
+use App\Exceptions\ArticleException;
+use App\Models\Article;
+
 class ArticleService
 {
     public function fetchArticles(): array
     {
-        return [];
+        return Article::query()->simplePaginate(15)->toArray();
     }
 
-    public function fetchArticle(int $id): array
+    /**
+     * @throws ArticleException
+     */
+    public function fetchArticleById(int $id): array
     {
-        return [];
+        $article = Article::query()->first($id);
+        if (! $article) {
+            throw new ArticleException(message: 'Article not found', code: 404);
+        }
+
+        return $article->toArray();
     }
 
     public function storeArticle(): void {}
 
-    public function updateArticle(int $id): void {}
+    /**
+     * @throws ArticleException
+     */
+    public function updateArticle(int $id): void
+    {
+        $article = Article::query()->first($id);
+        if (! $article) {
+            throw new ArticleException(message: 'Article not found', code: 404);
+        }
+    }
 
-    public function deleteArticle(int $id): void {}
-
-    public function recordArticleClick(int $id): void {}
+    /**
+     * @throws ArticleException
+     */
+    public function recordArticleClick(int $id): void
+    {
+        $article = Article::query()->first($id);
+        if (! $article) {
+            throw new ArticleException(message: 'Article not found', code: 404);
+        }
+    }
 }

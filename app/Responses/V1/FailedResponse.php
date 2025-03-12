@@ -17,6 +17,11 @@ class FailedResponse implements ApiResponseInterface, Responsable
         protected int $statusCode = 200
     ) {}
 
+    public static function make(string $message, array $data = [], array $errors = [], int $statusCode = 200): self
+    {
+        return new static($message, $data, $errors, $statusCode);
+    }
+
     public function getResponseBlock(): array
     {
         return [

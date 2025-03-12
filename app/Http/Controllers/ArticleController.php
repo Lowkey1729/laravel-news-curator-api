@@ -20,7 +20,7 @@ class ArticleController extends Controller
 
     public function show()
     {
-        $data = $this->articleService->fetchArticle(1);
+        $data = $this->articleService->fetchArticleById(1);
 
         return SuccessResponse::make(message: 'Article fetched successfully', data: $data);
     }

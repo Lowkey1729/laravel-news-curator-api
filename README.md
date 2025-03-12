@@ -13,6 +13,12 @@ Clone the repository intoyour local environment
 git clone  https://github.com/Lowkey1729/laravel-news-curator-api.git
 cd laravel-news-curator-api
 ```
+
+## Install Dependencies
+
+```bash
+composer install
+```
 ## Update the .env from the .env.example.
 
 ```bash
@@ -24,7 +30,7 @@ Update the .env.testing from the .env.example.
 cp .env.example .env.testing
 ```
 
-Ensure to set the ```APP_ENV=testing```
+Ensure to set the ```APP_ENV=testing``` and set up your database credentials and table
 
 ## Run Code Locally
 

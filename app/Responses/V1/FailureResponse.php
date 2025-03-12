@@ -14,10 +14,10 @@ class FailureResponse implements ApiResponseInterface, Responsable
         protected string $message,
         protected array $data = [],
         protected array $errors = [],
-        protected int $statusCode = 200
+        protected int $statusCode = 400
     ) {}
 
-    public static function make(string $message, array $data = [], array $errors = [], int $statusCode = 200): self
+    public static function make(string $message, array $data = [], array $errors = [], int $statusCode = 400): self
     {
         return new static($message, $data, $errors, $statusCode);
     }

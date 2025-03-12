@@ -40,7 +40,7 @@ class ArticleController extends Controller
     {
         $this->articleService->storeArticle($request->all());
 
-        return SuccessResponse::make(message: 'Article stored successfully', statusCode: 201);
+        return SuccessResponse::make(message: 'Article created successfully', statusCode: 201);
     }
 
     /**

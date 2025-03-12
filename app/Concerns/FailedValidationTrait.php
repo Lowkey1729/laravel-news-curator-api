@@ -12,7 +12,11 @@ trait FailedValidationTrait
     protected function failedValidation(Validator $validator)
     {
         $validationMessage = $this->stringifyMessageBagError($validator->errors());
-        $response = (new FailureResponse($validationMessage))->toResponse($this);
+        $response = (new FailureResponse(
+            message: $validationMessage,
+            errors: $validator->errors()->toArray(),
+            statusCode: 422)
+        )->toResponse($this);
 
         throw (new ValidationException($validator, $response))
             ->errorBag($this->errorBag)

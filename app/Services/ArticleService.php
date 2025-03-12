@@ -22,7 +22,7 @@ class ArticleService
                 $query->where('views', $data->views);
             })
             ->when($data->clicks, function (Builder $query) use ($data) {
-                $query->whereRelation('clicks', 'title', $data->clicks);
+                $query->where('clicks', $data->clicks);
             })
             ->orderBy((string) $data->sort_by, $data->direction)
             ->paginate(perPage: $data->limit, page: $data->page)
@@ -34,7 +34,7 @@ class ArticleService
      */
     public function fetchArticleById(int $id): array
     {
-        $article = Article::query()->first($id);
+        $article = Article::query()->find($id);
         if (! $article) {
             throw new ArticleException(message: 'Article not found', code: 404);
         }
@@ -43,7 +43,7 @@ class ArticleService
     }
 
     /**
-     * @param  array{title: string, content: string, url: string, slug: string}  $data
+     * @param  array{title: string, content: string}  $data
      */
     public function storeArticle(array $data): void
     {
@@ -51,13 +51,13 @@ class ArticleService
     }
 
     /**
-     * @param  array{title: ?string, content: ?string, url: ?string, slug: ?string}  $data
+     * @param  array{title: ?string, content: ?string}  $data
      *
      * @throws ArticleException
      */
     public function updateArticle(int $id, array $data): void
     {
-        $article = Article::query()->first($id);
+        $article = Article::query()->find($id);
         if (! $article) {
             throw new ArticleException(message: 'Article not found', code: 404);
         }

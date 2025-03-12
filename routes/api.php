@@ -5,17 +5,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/v1/')->group(function () {
     Route::get('/articles', [ArticleController::class, 'index'])
-        ->name('articles.index');
+        ->name('v1.articles.index');
 
     Route::post('/articles', [ArticleController::class, 'store'])
-        ->name('articles.store');
+        ->name('v1.articles.store');
 
     Route::get('/articles/{id}', [ArticleController::class, 'show'])
-        ->name('articles.show');
+        ->name('v1.articles.show');
 
     Route::put('/articles/{id}', [ArticleController::class, 'update'])
-        ->name('articles.update');
+        ->name('v1.articles.update');
 
     Route::post('/articles/{id}/click', [ArticleController::class, 'click'])
-        ->name('articles.click');
+        ->name('v1.articles.click');
 });

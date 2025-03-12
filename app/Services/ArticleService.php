@@ -62,7 +62,6 @@ class ArticleService
             throw new ArticleException(message: 'Article not found', code: 404);
         }
 
-        //Update only the fields that have received input values.
         $article->update(array_filter($data, fn ($value) => $value !== null));
     }
 

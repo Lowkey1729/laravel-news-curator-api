@@ -18,52 +18,35 @@ cd laravel-news-curator-api
 ```bash
 cp .env.example .env
 ```
-Update the .env.testing from the .env.testing.example.
+Update the .env.testing from the .env.example.
 
 ```bash
-cp .env.testing.example .env.testing
+cp .env.example .env.testing
 ```
 
+Ensure to set the ```APP_ENV=testing```
 
 ## Run Code Locally
-
-Ensure that the latest version of docker desktop is installed on your local machine. This will also install docker compose alongside automatically. Follow this link to install docker docker installation.
 
 Then run the following command from the root of the application
 
 ```bash
-docker compose up --build
+php artisan serve
 ```
 
 ## Manage Migrations
 
 ```bash
-docker compose exec api  php artisan migrate --seed
+php artisan migrate
 ```
 
 ```bash
-docker compose exec api  php artisan migrate --seed --env=testing
+php artisan migrate --env=testing
 ```
 
 ## Run test cases
 
 ```
-docker compose exec api  ./vendor/bin/pest
+./vendor/bin/pest
 ```
-
-## Run static analysis check on the Domain directory
-
-```
-./vendor/bin/phpstan analyse --memory-limit=2G src/Domain
-
-```
-
-## Run static analysis check on the full app directory
-
-```
-./vendor/bin/phpstan analyse --memory-limit=2G app
-```
-
-## Visit the swagger documentation age
-http://localhost:7001/api/doc
 

@@ -2,11 +2,14 @@
 
 namespace App\Requests;
 
+use App\Concerns\FailedValidationTrait;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 
 class CreateArticleRequest extends FormRequest
 {
+    use FailedValidationTrait;
+
     public function rules(): array
     {
         return [

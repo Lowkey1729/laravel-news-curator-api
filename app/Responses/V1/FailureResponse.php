@@ -6,7 +6,7 @@ use App\Concerns\ResponseTrait;
 use App\Responses\Contracts\ApiResponseInterface;
 use Illuminate\Contracts\Support\Responsable;
 
-class FailedResponse implements ApiResponseInterface, Responsable
+class FailureResponse implements ApiResponseInterface, Responsable
 {
     use ResponseTrait;
 

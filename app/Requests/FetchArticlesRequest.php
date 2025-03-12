@@ -2,6 +2,7 @@
 
 namespace App\Requests;
 
+use App\Concerns\FailedValidationTrait;
 use App\DTOs\FetchArticlesRequestData;
 use App\Rules\IsBoolean;
 use Illuminate\Foundation\Http\FormRequest;
@@ -9,6 +10,8 @@ use Spatie\LaravelData\WithData;
 
 class FetchArticlesRequest extends FormRequest
 {
+    use FailedValidationTrait;
+
     /** @use WithData<string>*/
     use WithData;
 

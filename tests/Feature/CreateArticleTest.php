@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Article;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\Fixtures\ArticleRequestFixtures;
 
@@ -25,7 +26,12 @@ test('it creates article successfully', function () {
 
     $data = $response->json();
 
+    $article = Article::query()->first();
+
     expect($data)
         ->success->toBeTrue()
-        ->message->toBeString()->toBe('Article created successfully');
+        ->message->toBeString()->toBe('Article created successfully')
+        ->and($requestData)
+        ->title->toBe($article->title)
+        ->url->toBe($article->url);
 });

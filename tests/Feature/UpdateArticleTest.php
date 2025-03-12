@@ -37,3 +37,41 @@ test('it successfully updates an article', function () {
         ->success->toBeTrue()
         ->message->toBeString()->toBe('Article updated successfully');
 });
+
+test('it has the slug changed after updating the title of an article', function () {
+    $requestData = $this->updateArticle();
+
+    $article = Article::factory()->create(['title' => $requestData['title']]);
+
+    $response = $this->putJson(route('v1.articles.update', ['id' => $article->id]), $requestData);
+    $response->assertStatus(200);
+
+    $data = $response->json();
+
+    $updatedArticle = Article::query()->first();
+
+    expect($data)
+        ->success->toBeTrue()
+        ->message->toBeString()->toBe('Article updated successfully')
+        ->and($updatedArticle)
+        ->slug->not->toBe($article->slug);
+});
+
+test('it does not have the slug changed when the title of the article is not updated', function () {
+    $requestData = $this->updateArticle();
+
+    $article = Article::factory()->create();
+
+    $response = $this->putJson(route('v1.articles.update', ['id' => $article->id]), ['url' => 'https://facebook.com']);
+    $response->assertStatus(200);
+
+    $data = $response->json();
+
+    $updatedArticle = Article::query()->first();
+
+    expect($data)
+        ->success->toBeTrue()
+        ->message->toBeString()->toBe('Article updated successfully')
+        ->and($updatedArticle)
+        ->slug->toBe($article->slug);
+});

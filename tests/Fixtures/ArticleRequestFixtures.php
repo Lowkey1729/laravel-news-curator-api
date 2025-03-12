@@ -12,6 +12,7 @@ trait ArticleRequestFixtures
         return [
             'title' => 'Article title',
             'content' => 'Article content is tested',
+            'url' => 'http://google.com',
         ];
     }
 

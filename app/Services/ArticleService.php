@@ -43,7 +43,7 @@ class ArticleService
     }
 
     /**
-     * @param  array{title: string, content: string}  $data
+     * @param  array{title: string, content: string, url: string}  $data
      */
     public function storeArticle(array $data): void
     {
@@ -51,7 +51,7 @@ class ArticleService
     }
 
     /**
-     * @param  array{title: ?string, content: ?string}  $data
+     * @param  array{title: ?string, content: ?string, url: ?string}  $data
      *
      * @throws ArticleException
      */

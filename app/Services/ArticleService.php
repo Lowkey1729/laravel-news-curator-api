@@ -25,7 +25,7 @@ class ArticleService
                 $query->whereRelation('clicks', 'title', $data->clicks);
             })
             ->orderBy((string) $data->sort_by, $data->direction)
-            ->paginate($data->limit)
+            ->paginate(perPage: $data->limit, page: $data->page)
             ->toArray();
     }
 
@@ -42,17 +42,28 @@ class ArticleService
         return $article->toArray();
     }
 
-    public function storeArticle(): void {}
+    /**
+     * @param  array{title: string, content: string, url: string, slug: string}  $data
+     */
+    public function storeArticle(array $data): void
+    {
+        Article::query()->create($data);
+    }
 
     /**
+     * @param  array{title: ?string, content: ?string, url: ?string, slug: ?string}  $data
+     *
      * @throws ArticleException
      */
-    public function updateArticle(int $id): void
+    public function updateArticle(int $id, array $data): void
     {
         $article = Article::query()->first($id);
         if (! $article) {
             throw new ArticleException(message: 'Article not found', code: 404);
         }
+
+        //Update only the fields that have received input values.
+        $article->update(array_filter($data, fn ($value) => $value !== null));
     }
 
     /**
@@ -64,5 +75,8 @@ class ArticleService
         if (! $article) {
             throw new ArticleException(message: 'Article not found', code: 404);
         }
+
+        $article->clicks += 1;
+        $article->save();
     }
 }

@@ -38,7 +38,7 @@ class ArticleController extends Controller
 
     public function store(CreateArticleRequest $request)
     {
-        $this->articleService->storeArticle();
+        $this->articleService->storeArticle($request->all());
 
         return SuccessResponse::make(message: 'Article stored successfully', statusCode: 201);
     }
@@ -48,7 +48,7 @@ class ArticleController extends Controller
      */
     public function update(int $id, UpdateArticleRequest $request)
     {
-        $this->articleService->updateArticle($id);
+        $this->articleService->updateArticle(id: $id, data: $request->all());
 
         return SuccessResponse::make(message: 'Article updated successfully');
     }

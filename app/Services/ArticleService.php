@@ -4,33 +4,21 @@ namespace App\Services;
 
 class ArticleService
 {
-    public function fetchArticles()
+    public function fetchArticles(): array
     {
-
+        return [];
     }
 
-    public function fetchArticle(int $id)
+    public function fetchArticle(int $id): array
     {
-
+        return [];
     }
 
-    public function storeArticle()
-    {
+    public function storeArticle(): void {}
 
-    }
+    public function updateArticle(int $id): void {}
 
-    public function updateArticle(int $id)
-    {
+    public function deleteArticle(int $id): void {}
 
-    }
-
-    public function deleteArticle(int $id)
-    {
-
-    }
-
-    public function recordArticleClick(int $id)
-    {
-
-    }
+    public function recordArticleClick(int $id): void {}
 }

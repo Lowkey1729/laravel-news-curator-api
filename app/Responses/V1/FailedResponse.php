@@ -11,10 +11,9 @@ class FailedResponse implements ApiResponseInterface, Responsable
     use ResponseTrait;
 
     public function __construct(
-        protected string $errorMessage,
+        protected string $message,
         protected array $data = [],
         protected array $errors = [],
-        protected array $errorTrace = [],
         protected int $statusCode = 200
     ) {}
 
@@ -23,9 +22,8 @@ class FailedResponse implements ApiResponseInterface, Responsable
         return [
             'success' => false,
             'data' => $this->data,
-            'error' => $this->errorMessage,
+            'message' => $this->message,
             'errors' => $this->errors,
-            'trace' => $this->errorTrace,
         ];
     }
 

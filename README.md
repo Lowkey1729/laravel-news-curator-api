@@ -58,15 +58,6 @@ Ensure the following configurations are properly set:
 
 ---
 
-## **🔹 Run Code Locally**
-Start the Laravel development server:
-
-```bash
-php artisan serve
-```
-
----
-
 ## **🔹 Manage Migrations**
 
 Run migrations for the **default environment**:
@@ -88,6 +79,15 @@ Execute the test suite using Pest:
 
 ```bash
 ./vendor/bin/pest
+```
+
+---
+
+## **🔹 Run Code Locally**
+Start the Laravel development server:
+
+```bash
+php artisan serve
 ```
 
 ---

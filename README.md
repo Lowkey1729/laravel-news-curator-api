@@ -1,58 +1,95 @@
-------
-**News-Curator-API Task**
+# **News Curator API Task**
 
-- Olarewaju Mojeed: **[github.com/Lowkey1729](https://github.com/Lowkey1729)**
+### **Author:**
+📌 **Olarewaju Mojeed**  
+🔗 [GitHub Profile](https://github.com/Lowkey1729)
 
-## Table of Contents
+---
 
-## Clone Repository
+## **📌 Table of Contents**
+- [Clone Repository](#clone-repository)
+- [Install Dependencies](#install-dependencies)
+- [Environment Setup](#environment-setup)
+- [Run Code Locally](#run-code-locally)
+- [Manage Migrations](#manage-migrations)
+- [Run Test Cases](#run-test-cases)
 
-Clone the repository intoyour local environment
+---
+
+## **🔹 Clone Repository**
+Clone the repository into your local environment:
 
 ```bash
-git clone  https://github.com/Lowkey1729/laravel-news-curator-api.git
+git clone https://github.com/Lowkey1729/laravel-news-curator-api.git
 cd laravel-news-curator-api
 ```
 
-## Install Dependencies
+---
+
+## **🔹 Install Dependencies**
+Run the following command to install required dependencies:
 
 ```bash
 composer install
 ```
-## Update the .env from the .env.example.
+
+---
+
+## **🔹 Environment Setup**
+
+### **1️⃣ Create `.env` File**
+Copy `.env.example` to `.env`:
 
 ```bash
 cp .env.example .env
 ```
-Update the .env.testing from the .env.example.
+
+### **2️⃣ Create `.env.testing` File**
+Copy `.env.example` to `.env.testing`:
 
 ```bash
 cp .env.example .env.testing
 ```
 
-Ensure to set the ```APP_ENV=testing``` and set up your database credentials and table
+### **3️⃣ Update Environment Variables**
+Ensure the following configurations are properly set:
+- Set `APP_ENV=testing` in `.env.testing`.
+- Configure your **database credentials** and **table settings** in both `.env` and `.env.testing`.
 
-## Run Code Locally
+---
 
-Then run the following command from the root of the application
+## **🔹 Run Code Locally**
+Start the Laravel development server:
 
 ```bash
 php artisan serve
 ```
 
-## Manage Migrations
+---
+
+## **🔹 Manage Migrations**
+
+Run migrations for the **default environment**:
 
 ```bash
 php artisan migrate
 ```
 
+Run migrations for the **testing environment**:
+
 ```bash
 php artisan migrate --env=testing
 ```
 
-## Run test cases
+---
 
-```
+## **🔹 Run Test Cases**
+Execute the test suite using Pest:
+
+```bash
 ./vendor/bin/pest
 ```
 
+---
+
+✅ **Now you’re all set!** 🚀

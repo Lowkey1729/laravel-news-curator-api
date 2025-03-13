@@ -35,5 +35,5 @@ test('it successfully returns details of an article', function () {
         ->id->toBe($article->id)
         ->title->toBe($article->title)
         ->slug->toBe($article->slug)
-        ->body->toBe($article->body);
+        ->content->toBe($article->content);
 });
